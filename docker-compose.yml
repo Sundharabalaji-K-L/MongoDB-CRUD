@@ -13,23 +13,17 @@ services:
     ports:
       - "27017:27017"
 
-    healthcheck:
-      test: ['CMD', "mongo", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      retries: 5
-      timeout: 5s
 
   curdapp:
     build:
       context: .
-      dockerfile: dockerfile
+      dockerfile: DockerFile
 
     container_name: crud-app
     ports:
     - "8000:8000"
 
     depends_on:
-      mongodb:
-        condition: service_healthy
+      - mongodb
       
       
