@@ -12,9 +12,10 @@ async def addPost(post: PostCreate):
 async def getPost(post_id: str):
     post = await database["posts"].find_one({"_id": ObjectId(post_id)})
     
-    if post:
-        return PostModel(**post).serialize_model()
-    return None
+    if post is None:
+        return None
+    return PostModel(**post).serialize_model()
+
 
 
 async def getPosts(skip: int = 0, limit:int = 10):
@@ -42,7 +43,7 @@ async def ModifyPost(post_id: str, post: PostCreate):
 
 
 async def deletePost(post_id: str):
-    deleted_result = await database['posts'].delete_one({'_id': ObjectId(post_id)})
+    deleted_result = await database['posts'].delete_one({"_id": ObjectId(post_id)})
     
     if deleted_result.deleted_count == 0:
         return None

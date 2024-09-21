@@ -1,0 +1,31 @@
+
+POST http://localhost:8000/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "My First Post",
+  "description": "This is the content of my First post"
+}
+
+###
+
+GET http://localhost:8000/posts HTTP/1.1
+
+###
+
+GET http://localhost:8000/post/66ee47688b5d6d77a4fc911e HTTP/1.1
+
+###
+
+PUT http://localhost:8000/update/66ee471a8b5d6d77a4fc911d HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "My First Post",
+  "description": "This is the content of my First post"
+}
+
+###
+ 
+DELETE http://localhost:8000/delete/66ee47688b5d6d77a4fc911e HTTP/1.1
+
